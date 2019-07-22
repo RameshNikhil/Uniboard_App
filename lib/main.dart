@@ -7,6 +7,8 @@ import './pages/homescreen.dart';
 //import './pages/test.dart';
 import 'package:flutter/services.dart';
 
+import 'backend/run_javascript.dart';
+
 void main() {
   SystemChrome.setEnabledSystemUIOverlays([]);
   
@@ -40,8 +42,14 @@ class _SplashScreenState extends State<SplashScreen> {
     return new Timer(_duration, navigationPage);
   }
 
+  // If user has not logged in yet then show this
+
+  // void navigationPage() {
+  //   Navigator.pushReplacement(context, FadeRouteBuilder(page: HomeScreen()));
+  // }
+
   void navigationPage() {
-    Navigator.pushReplacement(context, FadeRouteBuilder(page: HomeScreen()));
+    Navigator.pushReplacement(context, FadeRouteBuilder(page: RunJSInWebView()));
   }
 
   @override

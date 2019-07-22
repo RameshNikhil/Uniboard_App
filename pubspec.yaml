@@ -28,6 +28,18 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
 
+  # CODE ADDED FROM SAMEER'S BACKEND FILES 
+  http: 0.12.0
+  ##sqflite: 0.13.0+1
+  path_provider: 0.4.1
+  ##zoomable_image: 1.2.1+1
+  ##multi_image_picker: 2.3.32
+  dio: 2.0.22
+  shared_preferences: 0.4.3
+  flare_flutter: any
+  flutter_webview_plugin: 0.3.0+2
+  webview_flutter: 0.2.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
