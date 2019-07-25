@@ -50,7 +50,7 @@ class DotsIndicator extends AnimatedWidget {
 
   Widget build(BuildContext context) {
     return new Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center ,
       children: new List<Widget>.generate(itemCount, _buildDot),
     );
   }

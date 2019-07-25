@@ -25,7 +25,15 @@ class _FunctionsPageState extends State<FunctionsPage> with TickerProviderStateM
                 mainAxisSpacing: 32.0,
                 crossAxisSpacing: 16.0,
                 children: <Widget>[
-                  for(String i in functions) Cards(title:i, page: SingleFunction(),),
+                  for(String i in functions) Cards(title:i, page: SingleFunction(), curve: 15.0,),
+
+                  Row(
+                    children: <Widget>[
+                      
+                    ],
+                  ), 
+                  
+
             ],
           ), 
         ),

@@ -49,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
   // }
 
   void navigationPage() {
-    Navigator.pushReplacement(context, FadeRouteBuilder(page: RunJSInWebView()));
+    Navigator.pushReplacement(context, FadeRouteBuilder(page: HomeScreen()));
   }
 
   @override

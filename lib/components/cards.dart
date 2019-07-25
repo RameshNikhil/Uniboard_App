@@ -6,8 +6,9 @@ import '../pages/unitPage.dart';
 class Cards extends StatefulWidget {
   var title;
   var page; 
+  double curve; 
 
-  Cards({Key key, @required this.title, @required this.page,}) : super(key: key);
+  Cards({Key key, @required this.title, @required this.page, @required this.curve}) : super(key: key);
 
   @override
   _CardsState createState() => new _CardsState();
@@ -24,7 +25,7 @@ class _CardsState extends State<Cards> {
         },
         child: Card(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(widget.curve),
           ),
           clipBehavior: Clip.antiAlias,
           child: new Container(
@@ -49,6 +50,7 @@ class _CardsState extends State<Cards> {
                   fontWeight: FontWeight.w700,
                 ),
               ),
+              
             ),
           ),
         ),

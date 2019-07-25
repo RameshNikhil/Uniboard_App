@@ -44,7 +44,7 @@ class _SubjectsPageState extends State<SubjectsPage> with TickerProviderStateMix
                 crossAxisSpacing: 16.0,
                 children: <Widget>[
                   
-                  for(String i in unit) Cards(title:i, page: UnitPage(),)
+                  for(String i in unit) Cards(title:i, page: UnitPage(), curve: 15.0,)
 
             ],
           ), 
