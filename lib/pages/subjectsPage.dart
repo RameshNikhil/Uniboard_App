@@ -14,29 +14,59 @@ class _SubjectsPageState extends State<SubjectsPage> with TickerProviderStateMix
       
   @override
   Widget build(BuildContext context) {
-    var unit = ["One", ];   //title of the units are to be passed into this. Assumes all data is fetched in the homescreen or main.dart file
-                            //best if data fetched then passed into to homescreen. Can also store all data in local storage then populate from there 
+   
+        return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
 
-        return new Material(
-          // child: new Column(
-          //     crossAxisAlignment: CrossAxisAlignment.start,
-          //     children: <Widget>[
-          // new Container(
-          //   padding: EdgeInsets.fromLTRB(16.0, 64.0, 16.0, 16.0),
-          //   child: new Text(
-          //     "Home",
-          //     style: new TextStyle(
-          //       fontSize: 40.0,
-          //       color: Colors.pink,
-          //       fontWeight: FontWeight.w900,
-          //     ),
-          //   ),
-          // ),
-          // ])
-    
-          child: new Container(
-            child: new Center(
-              child: GridView.count(
+                Padding(
+                   padding: EdgeInsets.fromLTRB(16.0, 120.0, 0.0, 16.0),
+                   child:   Text("Hello,",
+                    style: TextStyle(
+                      fontSize: 31.0,
+                      color: Colors.black,
+                    )),
+                ), 
+
+                Padding(
+                   padding: EdgeInsets.fromLTRB(16.0, 0.0, 0.0, 16.0),
+                  child: Text("Nikhil Ramesh",
+                    style: TextStyle(
+                        fontSize: 32.0,
+                        //fontFamily: "Montserrat",
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600)),
+                ), 
+
+Expanded(
+  child:  Center(
+  child: Content(),
+),
+),
+
+             
+
+
+          
+             
+         
+                
+
+
+              ],
+      );
+  }
+}
+
+class Content extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+     var unit = ["One", "2", "3", "4"]; 
+
+    return Padding(
+      padding: EdgeInsets.all(10.0),
+      child:  GridView.count(
                 crossAxisCount: 2,
                 padding: EdgeInsets.fromLTRB(16.0, 128.0, 16.0, 16.0),
                 childAspectRatio: 8.0 / 9.5,
@@ -47,16 +77,9 @@ class _SubjectsPageState extends State<SubjectsPage> with TickerProviderStateMix
                   for(String i in unit) Cards(title:i, page: UnitPage(), curve: 15.0,)
 
             ],
-          ), 
-        ),
-      ),
+          ),
 
-    );
+      );  
+     
   }
 }
-
-//This creates the individual subject card which fits into the subjectsPage which is a grid view
-//the subjects page is then pushed into a container on the home page
-
-
-// Have to collect subbject info and for each, create a card

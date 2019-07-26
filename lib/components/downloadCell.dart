@@ -17,7 +17,9 @@ class _DownloadCellState extends State<DownloadCell> {
   @override
   Widget build(BuildContext context) { 
 
-    return new InkWell(
+    return Padding(
+      padding: EdgeInsets.only(bottom: 10.0),
+      child: InkWell(
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
@@ -129,7 +131,10 @@ class _DownloadCellState extends State<DownloadCell> {
               );
             });
       },
+    ),
     );
+
+    
 
 
   }
