@@ -34,12 +34,15 @@ class _DownloadsPageState extends State<DownloadsPage> {
     //NEED TO FIX PADDING
 
     return new Scaffold(
+      appBar: AppBar(
+        elevation:0
+      ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(16.0, 37.0, 16.0, 0.0),
+        padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
         child: ListView(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 16.0),
+              padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 16.0),
               child: Text(
                 'Downloads',
                 style: new TextStyle(

@@ -18,6 +18,7 @@ void main() {
     theme: ThemeData(
       canvasColor: Colors.white, 
       primaryColor: Colors.white,
+      fontFamily: 'SFPro',
       appBarTheme: AppBarTheme(
         color: Colors.white,
       ),
