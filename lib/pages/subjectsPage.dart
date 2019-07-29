@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:uniboard_app/routing/fade_transition.dart';
 import '../pages/unitPage.dart';
 import '../routing/scale_transition.dart';
 import '../components/cards.dart';
@@ -82,7 +83,7 @@ class Content extends StatelessWidget {
       child: GridView.count(
         crossAxisCount: 2,
         padding: EdgeInsets.fromLTRB(16.0, 28.0, 16.0, 16.0),
-        childAspectRatio: 8.0 / 9.5,
+        childAspectRatio: 8.0 / 10.5,
         mainAxisSpacing: 32.0,
         crossAxisSpacing: 16.0,
         children: <Widget>[
@@ -90,7 +91,7 @@ class Content extends StatelessWidget {
             Cards(
               title: i,
               page: UnitPage(),
-              curve: 15.0,
+              curve: 10.0,
             )
         ],
       ),

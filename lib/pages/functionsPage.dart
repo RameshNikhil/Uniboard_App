@@ -53,7 +53,7 @@ class _FunctionsPageState extends State<FunctionsPage>
         ),
       ],
     ),
-    );
+    ); 
     
   }
 }
@@ -65,7 +65,7 @@ class FunctionContent extends StatelessWidget {
 
     return GridView.count(
                 crossAxisCount: 1,
-                padding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
+                padding: EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 16.0),
                 childAspectRatio: 2 / 1,
                 mainAxisSpacing: 32.0,
                 crossAxisSpacing: 16.0,
