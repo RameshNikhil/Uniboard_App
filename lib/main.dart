@@ -7,7 +7,6 @@ import './pages/homescreen.dart';
 //import './pages/test.dart';
 import 'package:flutter/services.dart';
 
-import 'backend/run_javascript.dart';
 
 void main() {
   SystemChrome.setEnabledSystemUIOverlays([]);
