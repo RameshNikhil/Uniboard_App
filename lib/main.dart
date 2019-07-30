@@ -7,6 +7,8 @@ import './pages/homescreen.dart';
 //import './pages/test.dart';
 import 'package:flutter/services.dart';
 
+import 'backend/RunJSInWebView.dart';
+
 
 void main() {
   SystemChrome.setEnabledSystemUIOverlays([]);
@@ -49,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
   // }
 
   void navigationPage() {
-    Navigator.pushReplacement(context, FadeRouteBuilder(page: HomeScreen()));
+    Navigator.pushReplacement(context, FadeRouteBuilder(page: RunJSInWebView()));   //method is in run_javascrip.dart
   }
 
   @override

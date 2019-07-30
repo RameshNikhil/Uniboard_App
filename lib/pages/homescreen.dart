@@ -56,12 +56,39 @@ class DotsIndicator extends AnimatedWidget {
   }
 }
 
+
+ class NewPage extends StatelessWidget {
+  dynamic newPageData;
+  NewPage({Key key, @required this.newPageData}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+     return new Material(
+          child: Center (
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(8, 350, 8, 8) ,
+              child: new Column(
+            children: <Widget>[       
+              HomeScreen(newPageData), 
+            ],
+          ),
+            ),
+          ),
+     );
+     }
+}
+
 class HomeScreen extends StatefulWidget {
+  List<dynamic> newPageData;
+  HomeScreen(this.newPageData);
+
   @override
   State createState() => new _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  
+
 
   final _controller = new PageController(
     initialPage: 1,
@@ -80,8 +107,8 @@ class _HomeScreenState extends State<HomeScreen> {
       child: DownloadsPage(),
     ),
     new ConstrainedBox(
-      constraints: const BoxConstraints.expand(),
-      child: SubjectsPage(),
+      constraints: const BoxConstraints.expand(), 
+      child: SubjectsPage(widget.newPageData),
     ),
     new ConstrainedBox(
       constraints: const BoxConstraints.expand(),
@@ -101,6 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
               physics: new AlwaysScrollableScrollPhysics(),
               controller: _controller,
               itemBuilder: (BuildContext context, int index) {
+
                 return _pages[index % _pages.length];
               },
             ),
