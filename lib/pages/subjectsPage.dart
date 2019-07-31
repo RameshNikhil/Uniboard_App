@@ -10,7 +10,6 @@ import 'dart:convert';
 
 class SubjectsPage extends StatefulWidget {
   List<dynamic> newPageData;
-  // SubjectsPage(this.newPageData);
   SubjectsPage(this.newPageData);
 
   @override
@@ -69,7 +68,7 @@ class _SubjectsPageState extends State<SubjectsPage>
         ),
         Expanded(
           child: Center(
-            child: Content(newPageData : widget.newPageData),
+            child: Content(widget.newPageData),
           ),
         ),
       ],
@@ -81,18 +80,21 @@ class _SubjectsPageState extends State<SubjectsPage>
 
 class Content extends StatelessWidget {
   List<dynamic> newPageData;
-  Content({@required newPageData});
+  Content(this.newPageData);
 
 
   @override
   Widget build(BuildContext context) {
-    var unit = ["One", "2", "3", "4"];
+    //var unit = ["One", "2", "3", "4"];
     var unitArray = [];
     var subjectList = newPageData[0];
 
      for (var item in subjectList) {
-    unitArray.add(item[1]);
-  }
+       var tempUnitTitle = item[1].toString().substring(0, 7);
+       print(tempUnitTitle);
+       unitArray.add(tempUnitTitle);
+    }
+    print(unitArray);
 
     // getJSONData(widget.selectedReportList[0][0][1], widget.selectedReportList[1][3]);
     // return Text(
@@ -117,28 +119,8 @@ class Content extends StatelessWidget {
         ],
       ),
     );
+
+
   }
 }
 
-
-//Dont need this righ now
-
-Future<String> getJSONData(subjectsList, cookie) async{
-  List<dynamic> subjectIDNumArray = [];
-  for (var item in subjectsList) {
-    subjectIDNumArray.add(item[0]);
-  }
-
-  var url = "https://us-central1-synopsis-465b0.cloudfunctions.net/getSubjectDataFromMoodle?subjects="+ subjectIDNumArray.toString() + '&cookie=' + cookie.toString();
-
-  makeGetRequest(url);
-}
-
-Future<String> makeGetRequest(url) async{
-  var response = await http.get(
-    Uri.encodeFull(url)
-  );
-    var printStatement = json.decode(response.body);
-
-  print(printStatement.toString());
-}

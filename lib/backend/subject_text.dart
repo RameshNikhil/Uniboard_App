@@ -43,7 +43,7 @@ class _SubjectTextState extends State<SubjectText> {
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              NewPage(newPageData: newPageData)),
+                              HomeScreen(newPageData: newPageData)),
                     );
                   },
                 )

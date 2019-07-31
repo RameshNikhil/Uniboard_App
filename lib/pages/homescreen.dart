@@ -57,43 +57,21 @@ class DotsIndicator extends AnimatedWidget {
 }
 
 
- class NewPage extends StatelessWidget {
-  dynamic newPageData;
-  NewPage({Key key, @required this.newPageData}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-     return new Material(
-          child: Center (
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(8, 350, 8, 8) ,
-              child: new Column(
-            children: <Widget>[       
-              HomeScreen(newPageData), 
-            ],
-          ),
-            ),
-          ),
-     );
-     }
-}
 
 class HomeScreen extends StatefulWidget {
   List<dynamic> newPageData;
-  HomeScreen(this.newPageData);
+  HomeScreen({Key key, @required this.newPageData}) : super(key: key);
 
   @override
   State createState() => new _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  
-
-
 
   @override
   Widget build(BuildContext context) {
 
+    List<dynamic> unitNames = widget.newPageData;
 
   final _controller = new PageController(
     initialPage: 1,
@@ -101,25 +79,29 @@ class _HomeScreenState extends State<HomeScreen> {
   );
 
    const _kDuration = const Duration(milliseconds: 300);
-
    const _kCurve = Curves.ease;
-
   final _kArrowColor = Colors.black.withOpacity(0.8);
 
   final List<Widget> _pages = <Widget>[
-    new ConstrainedBox(
-      constraints: const BoxConstraints.expand(),
-      child: DownloadsPage(),
-    ),
-    new ConstrainedBox(
-      constraints: const BoxConstraints.expand(), 
-      child: SubjectsPage(newPageData: widget.newPageData),
-    ),
-    new ConstrainedBox(
-      constraints: const BoxConstraints.expand(),
-      child: FunctionsPage(),
-    ),
+     DownloadsPage(),
+     SubjectsPage(unitNames),
+     FunctionsPage(),
+
+    // new ConstrainedBox(
+    //   constraints: const BoxConstraints.expand(),
+    //   child: DownloadsPage(),
+    // ),
+    // new ConstrainedBox(
+    //   constraints: const BoxConstraints.expand(), 
+    //   child: SubjectsPage(newPageData: widget.newPageData),
+    // ),
+    // new ConstrainedBox(
+    //   constraints: const BoxConstraints.expand(),
+    //   child: FunctionsPage(),
+    // ),
+
   ];
+
 
 
     return new Scaffold(
