@@ -26,9 +26,9 @@ void main() {
     ),
 
     home: new SplashScreen(),
-    routes: <String, WidgetBuilder>{
-      '/HomeScreen': (BuildContext context) => new HomeScreen()
-    },
+    // routes: <String, WidgetBuilder>{
+    //   '/HomeScreen': (BuildContext context) => new HomeScreen()
+    // },
   ));
 }
 

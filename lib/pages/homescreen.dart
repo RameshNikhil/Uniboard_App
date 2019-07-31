@@ -90,14 +90,19 @@ class _HomeScreenState extends State<HomeScreen> {
   
 
 
+
+  @override
+  Widget build(BuildContext context) {
+
+
   final _controller = new PageController(
     initialPage: 1,
     keepPage: false,
   );
 
-  static const _kDuration = const Duration(milliseconds: 300);
+   const _kDuration = const Duration(milliseconds: 300);
 
-  static const _kCurve = Curves.ease;
+   const _kCurve = Curves.ease;
 
   final _kArrowColor = Colors.black.withOpacity(0.8);
 
@@ -108,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
     new ConstrainedBox(
       constraints: const BoxConstraints.expand(), 
-      child: SubjectsPage(widget.newPageData),
+      child: SubjectsPage(newPageData: widget.newPageData),
     ),
     new ConstrainedBox(
       constraints: const BoxConstraints.expand(),
@@ -117,8 +122,6 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
 
-  @override
-  Widget build(BuildContext context) {
     return new Scaffold(
       body: new IconTheme(
         data: new IconThemeData(color: _kArrowColor),

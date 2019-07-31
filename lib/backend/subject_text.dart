@@ -16,7 +16,6 @@ class SubjectText extends StatefulWidget {
 }
 
 class _SubjectTextState extends State<SubjectText> {
-
   List<dynamic> selectedReportList = List();
   dynamic newPageData = [];
 
@@ -26,29 +25,46 @@ class _SubjectTextState extends State<SubjectText> {
       future: getUnitData(widget.result),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
+
           return AlertDialog(
-            title: Text("Report Video"),
-            content: MultiSelectChip(
-              snapshot.data[2],
-              onSelectionChanged: (selectedList) {
-                setState(() {
-                  selectedReportList = selectedList;
-                  newPageData = [selectedList,snapshot.data];
-                });
-              },
+            elevation: 0,
+            contentPadding: EdgeInsets.all(0),
+            titlePadding: EdgeInsets.only(left: 8.0),
+            //   shape:  RoundedRectangleBorder(
+            //   borderRadius: BorderRadius.circular(10),
+            // ),
+            title: Row(
+              children: <Widget>[
+                Text("Choose your units:"),
+                FlatButton(
+                  child: Text("Done"),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              NewPage(newPageData: newPageData)),
+                    );
+                  },
+                )
+              ],
             ),
-            actions: <Widget>[
-              FlatButton(
-                child: Text("Report"),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => NewPage(newPageData : newPageData)),
-                  );
-                },
-              )
-            ],
+            content: Column(
+              children: <Widget>[
+                MultiSelectChip(
+                  snapshot.data[2],
+                  onSelectionChanged: (selectedList) {
+                    setState(() {
+                      selectedReportList = selectedList;
+                      newPageData = [selectedList, snapshot.data];
+                    });
+                  },
+                ),
+              ],
+            ),
           );
+
+
         } else if (snapshot.hasError) {
           return new Text("${snapshot.error}");
         } else {
@@ -60,31 +76,20 @@ class _SubjectTextState extends State<SubjectText> {
 
   @override
   Widget build(BuildContext context) {
+    final Shader linearGradient = LinearGradient(
+      colors: <Color>[Color(0xffc39cf4), Color(0xff9D78F3)],
+    ).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
+
     return new Container(
         child: new Column(children: <Widget>[
-      new Text(
-        "Select your units:",
-        style: TextStyle(fontSize: 20, color: Colors.deepPurple),
-      ),
+      // Text(
+      //   'Processing...',
+      //   style: new TextStyle(
+      //       fontSize: 20.0,
+      //       foreground: Paint()..shader = linearGradient,
+      //       fontWeight: FontWeight.w600),
+      // ),
       futureWidget(),
-      RaisedButton(
-        onPressed: () => {},
-        textColor: Colors.white,
-        padding: const EdgeInsets.all(0.0),
-        child: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: <Color>[
-                Color(0xFF6A1B9A),
-                Color(0xFF9C27B0),
-                Color(0xFFF3E5F5),
-              ],
-            ),
-          ),
-          padding: const EdgeInsets.all(10.0),
-          child: const Text('   Next   ', style: TextStyle(fontSize: 20)),
-        ),
-      ),
     ]));
   }
 }
@@ -116,21 +121,22 @@ Future<dynamic> getUnitData(result) async {
   }
   // var uriResponse = await client.post("https://us-central1-synopsis-465b0.cloudfunctions.net/getSubjectDataFromMoodle?subjects="+ subjectIDNumArray[0] + '&cookie=' + resultSplit[1]);
 
+  var url2 =
+      "https://us-central1-synopsis-465b0.cloudfunctions.net/getSubjectDataFromMoodle?subjects=" +
+          subjectIDNumArray.toString() +
+          '&cookie=' +
+          resultSplit[1].toString();
+  String cookieString = resultSplit[1].toString();
 
-var url2 = "https://us-central1-synopsis-465b0.cloudfunctions.net/getSubjectDataFromMoodle?subjects="+ subjectIDNumArray.toString() + '&cookie=' + resultSplit[1].toString();
-String cookieString = resultSplit[1].toString();
+  Future<String> getJSONData(url2) async {
+    var response = await http.get(Uri.encodeFull(url2));
+    // print(response.body);
+  }
 
-Future<String> getJSONData(url2) async{
-  var response = await http.get(
-    Uri.encodeFull(url2)
-  );
-  // print(response.body);
+  getJSONData(url2);
+
+  return ([subjectIDArray, subjectIDNumArray, subjectsList, cookieString]);
 }
-getJSONData(url2);
-
-return ([subjectIDArray, subjectIDNumArray, subjectsList, cookieString]);
-}
-
 
 class MultiSelectChip extends StatefulWidget {
   final List<dynamic> reportList;
@@ -151,7 +157,7 @@ class _MultiSelectChipState extends State<MultiSelectChip> {
 
     widget.reportList.forEach((item) {
       choices.add(Container(
-        padding: const EdgeInsets.all(2.0),
+        padding: const EdgeInsets.all(3.0),
         child: ChoiceChip(
           label: Text(item[1]),
           selected: selectedChoices.contains(item),
