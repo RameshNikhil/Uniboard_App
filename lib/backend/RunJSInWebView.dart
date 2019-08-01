@@ -18,7 +18,6 @@ class RunJSInWebViewState extends State<RunJSInWebView> {
     flutterWebviewPlugin.evalJavascript("document.cookie");
     flutterWebviewPlugin.onStateChanged.listen((state) async {
       if (state.type == WebViewState.finishLoad) {
-
         final a = flutterWebviewPlugin
             .evalJavascript('M.cfg.sesskey+"***"+document.cookie');
         a.then((String result) {
@@ -26,7 +25,8 @@ class RunJSInWebViewState extends State<RunJSInWebView> {
             Navigator.pushReplacement(
               context,
               //  MaterialPageRoute(builder: (context) => testPage(result: result)),
-              MaterialPageRoute(builder: (context) => SubSelectPage(result: result)),
+              MaterialPageRoute(
+                  builder: (context) => SubSelectPage(result: result)),
             );
           }
         });
@@ -38,13 +38,13 @@ class RunJSInWebViewState extends State<RunJSInWebView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body:  SafeArea(
-      child:  WebviewScaffold(
-      url: 'https://moodle.vle.monash.edu',
-      hidden: true,
-     // appBar: AppBar(title: Text("Run JS in Webview")),
-    ),
-    ),
+      body: SafeArea(
+        child: WebviewScaffold(
+          url: 'https://moodle.vle.monash.edu',
+          hidden: true,
+          // appBar: AppBar(title: Text("Run JS in Webview")),
+        ),
+      ),
     );
   }
 }
