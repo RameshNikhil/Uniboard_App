@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:uniboard_app/pages/homescreen.dart';
 import 'package:uniboard_app/pages/subjectsPage.dart';
+import 'package:uniboard_app/routing/fade_transition.dart';
 
 class SubjectText extends StatefulWidget {
   String result;
@@ -39,12 +40,7 @@ class _SubjectTextState extends State<SubjectText> {
                 FlatButton(
                   child: Text("Done"),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              HomeScreen(newPageData: newPageData)),
-                    );
+                     Navigator.pushReplacement(context, FadeRouteBuilder(page:  HomeScreen(newPageData: newPageData)));
                   },
                 )
               ],
