@@ -34,9 +34,7 @@ class _DownloadsPageState extends State<DownloadsPage> {
     //NEED TO FIX PADDING
 
     return new Scaffold(
-      appBar: AppBar(
-        elevation:0
-      ),
+      appBar: AppBar(elevation: 0),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
         child: ListView(

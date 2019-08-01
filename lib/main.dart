@@ -9,15 +9,14 @@ import 'package:flutter/services.dart';
 
 import 'backend/RunJSInWebView.dart';
 
-
 void main() {
   SystemChrome.setEnabledSystemUIOverlays([]);
-  
+
   runApp(new MaterialApp(
     debugShowCheckedModeBanner: false,
 
     theme: ThemeData(
-      canvasColor: Colors.white, 
+      canvasColor: Colors.white,
       primaryColor: Colors.white,
       fontFamily: 'SFPro',
       appBarTheme: AppBarTheme(
@@ -51,7 +50,10 @@ class _SplashScreenState extends State<SplashScreen> {
   // }
 
   void navigationPage() {
-    Navigator.pushReplacement(context, FadeRouteBuilder(page: RunJSInWebView()));   //method is in run_javascrip.dart
+    Navigator.pushReplacement(
+        context,
+        FadeRouteBuilder(
+            page: RunJSInWebView())); //method is in run_javascrip.dart
   }
 
   @override

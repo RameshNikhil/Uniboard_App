@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:uniboard_app/backend/subSelectPage.dart';
+import 'package:uniboard_app/routing/fade_transition.dart';
 
 class RunJSInWebView extends StatefulWidget {
   @override
@@ -23,11 +24,13 @@ class RunJSInWebViewState extends State<RunJSInWebView> {
         a.then((String result) {
           if (result.contains("***")) {
             Navigator.pushReplacement(
-              context,
-              //  MaterialPageRoute(builder: (context) => testPage(result: result)),
-              MaterialPageRoute(
-                  builder: (context) => SubSelectPage(result: result)),
-            );
+                context, FadeRouteBuilder(page: SubSelectPage(result: result)));
+            // Navigator.pushReplacement(
+            //   context,
+            //   //  MaterialPageRoute(builder: (context) => testPage(result: result)),
+            //   MaterialPageRoute(
+            //       builder: (context) => SubSelectPage(result: result)),
+            // );
           }
         });
       }
