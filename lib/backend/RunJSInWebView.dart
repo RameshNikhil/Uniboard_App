@@ -36,10 +36,15 @@ class RunJSInWebViewState extends State<RunJSInWebView> {
 
   @override
   Widget build(BuildContext context) {
-    return WebviewScaffold(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body:  SafeArea(
+      child:  WebviewScaffold(
       url: 'https://moodle.vle.monash.edu',
       hidden: true,
-      appBar: AppBar(title: Text("Run JS in Webview")),
+     // appBar: AppBar(title: Text("Run JS in Webview")),
+    ),
+    ),
     );
   }
 }

@@ -57,7 +57,6 @@ class DotsIndicator extends AnimatedWidget {
 }
 
 
-
 class HomeScreen extends StatefulWidget {
   List<dynamic> newPageData;
   HomeScreen({Key key, @required this.newPageData}) : super(key: key);
@@ -101,8 +100,6 @@ class _HomeScreenState extends State<HomeScreen> {
     // ),
 
   ];
-
-
 
     return new Scaffold(
       body: new IconTheme(
