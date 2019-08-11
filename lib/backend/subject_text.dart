@@ -20,75 +20,198 @@ class _SubjectTextState extends State<SubjectText> {
   List<dynamic> selectedReportList = List();
   dynamic newPageData = [];
 
-//NIKHIL: THIS IS THE FUTURE BUILDER WIDGET, RENDERS A LIST OF THE SUBJECTS ASYNCRONOUSLY
-  Widget futureWidget() {
-    return new FutureBuilder<dynamic>(
-      future: getUnitData(widget.result),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-
-          return AlertDialog(
-            elevation: 0,
-            contentPadding: EdgeInsets.all(0),
-            titlePadding: EdgeInsets.only(left: 8.0),
-            //   shape:  RoundedRectangleBorder(
-            //   borderRadius: BorderRadius.circular(10),
-            // ),
-            title: Row(
-              children: <Widget>[
-                Text("Choose your units:"),
-                FlatButton(
-                  child: Text("Done"),
-                  onPressed: () {
-                     Navigator.pushReplacement(context, FadeRouteBuilder(page:  HomeScreen(newPageData: newPageData)));
-                  },
-                )
-              ],
-            ),
-            content: Column(
-              children: <Widget>[
-                MultiSelectChip(
-                  snapshot.data[2],
-                  onSelectionChanged: (selectedList) {
-                    setState(() {
-                      selectedReportList = selectedList;
-                      newPageData = [selectedList, snapshot.data];
-                    });
-                  },
-                ),
-              ],
-            ),
-          );
-
-
-        } else if (snapshot.hasError) {
-          return new Text("${snapshot.error}");
-        } else {
-          return new CircularProgressIndicator();
-        }
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final Shader linearGradient = LinearGradient(
       colors: <Color>[Color(0xffc39cf4), Color(0xff9D78F3)],
     ).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
 
-    return new Container(
-        child: new Column(children: <Widget>[
-      // Text(
-      //   'Processing...',
-      //   style: new TextStyle(
-      //       fontSize: 20.0,
-      //       foreground: Paint()..shader = linearGradient,
-      //       fontWeight: FontWeight.w600),
-      // ),
-      futureWidget(),
-    ]));
+    double height = (MediaQuery.of(context).size.height) - 200.0;
+
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(elevation: 0),
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
+          child: ListView(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 16.0),
+                child: Text(
+                  'Select your units:',
+                  style: new TextStyle(
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold,
+                      foreground: Paint()..shader = linearGradient),
+                ),
+              ),
+
+              //Widget futureWidget() {
+
+              FutureBuilder<dynamic>(
+                future: getUnitData(widget.result),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    var reportList = <String>[];
+                    for (var item in snapshot.data[2]) {
+                      reportList.add(item[1]);
+                    }
+                    return Container(
+                      height: height,
+                      //child: Text("Test", style: TextStyle(fontSize: 30)),
+                      child: ListView(
+                        children: <Widget>[
+                          //put the container breakthrough here
+
+                          for (String i in reportList)
+                            unitSelection(
+                              unitTitle: i,
+                            )
+                        ],
+                      ),
+                    );
+                  } else if (snapshot.hasError) {
+                    return new Text("${snapshot.error}");
+                  } else {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Center(
+                          child: CircularProgressIndicator(
+                            backgroundColor: Colors.grey,
+                          ),
+                        ),
+                      ],
+                    );
+                  }
+                },
+              ),
+              //}
+              // Padding(
+              //   padding: EdgeInsets.only(top: 20),
+              //   child:  unitSelection(unitTitle: "Done",),
+              // )
+             
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+        label: Text(
+          "DONE", 
+        style: TextStyle(
+          fontSize: 15, 
+          fontWeight: FontWeight.bold, 
+
+        ),),
+        icon: Icon(Icons.check),
+        onPressed: () {
+          print("FAB pressed");
+          Navigator.pushReplacement(context, FadeRouteBuilder(page:  HomeScreen(newPageData: newPageData)));
+
+        },
+        foregroundColor: Colors.black,
+        backgroundColor: Colors.grey[100],
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(16.0))),
+      ),
+      ),
+    );
   }
 }
+
+class unitSelection extends StatefulWidget {
+  var unitTitle;
+  unitSelection({
+    Key key,
+    @required this.unitTitle,
+  }) : super(key: key);
+
+  _unitSelectionState createState() => _unitSelectionState();
+}
+
+class _unitSelectionState extends State<unitSelection> {
+  // var _begin = Alignment(1.0, 1.0);
+  // var _end = Alignment(-1.0, -1.0);
+  // var _cellColor = [
+  //   Color(0xffc39cf4).withOpacity(0.6),
+  //   Color(0xff9D78F3).withOpacity(0.6),
+  // ];
+
+  Color solidColor = Color(0xffdddddd);
+
+
+  void _cellChange() {
+    if (solidColor == Color(0xffdddddd)){ //grey: deselected
+       setState(() {
+        solidColor = Color(0xffaf7cf4); //purple: selected
+        // selectedRepo
+    });
+    } else if (solidColor == Color(0xffaf7cf4)){  //purple: selected
+      setState(() {
+        solidColor = Color(0xffdddddd);   //grey: deselct
+    });
+    }
+  }
+
+
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 10.0),
+      child: InkWell(
+        child: AnimatedContainer(
+          duration: Duration(milliseconds: 500),
+          height: 70.0,
+          margin: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
+          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
+          decoration: new BoxDecoration(
+            // gradient: LinearGradient(
+            //   begin: Alignment(1.0, 1.0),
+            //   end: Alignment(-1.0, -1.0),
+            //   stops: [0.1, 0.9],
+            //   colors: _cellColor,
+            // ),
+            color: solidColor,
+            borderRadius: new BorderRadius.circular(5.0),
+          ),
+          child: new IntrinsicHeight(
+            child: new Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                new Expanded(
+                  child: new Container(
+                    child: new Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        new Text(widget.unitTitle,
+                            style: Theme.of(context).textTheme.subhead.merge(
+                                TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold))),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        onTap: () {
+          //print("there was a tap");
+          
+           _cellChange();
+        },
+      ),
+    );
+  }
+}
+
+
 
 Future<dynamic> getUnitData(result) async {
   var resultSplit = result.split("***");
@@ -132,53 +255,6 @@ Future<dynamic> getUnitData(result) async {
   getJSONData(url2);
 
   return ([subjectIDArray, subjectIDNumArray, subjectsList, cookieString]);
-}
-
-class MultiSelectChip extends StatefulWidget {
-  final List<dynamic> reportList;
-  final Function(List<dynamic>) onSelectionChanged;
-
-  MultiSelectChip(this.reportList, {this.onSelectionChanged});
-
-  @override
-  _MultiSelectChipState createState() => _MultiSelectChipState();
-}
-
-class _MultiSelectChipState extends State<MultiSelectChip> {
-  // String selectedChoice = "";
-  List<dynamic> selectedChoices = List();
-
-  _buildChoiceList() {
-    List<Widget> choices = List();
-
-    widget.reportList.forEach((item) {
-      choices.add(Container(
-        padding: const EdgeInsets.all(3.0),
-        child: ChoiceChip(
-          label: Text(item[1]),
-          selected: selectedChoices.contains(item),
-          onSelected: (selected) {
-            setState(() {
-              selectedChoices.contains(item)
-                  ? selectedChoices.remove(item)
-                  : selectedChoices.add(item);
-              widget.onSelectionChanged(selectedChoices);
-            });
-          },
-        ),
-      ));
-    });
-
-    return choices;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Wrap(
-      direction: Axis.vertical,
-      children: _buildChoiceList(),
-    );
-  }
 }
 
 Future<dynamic> getSelectedUnitData(result) async {}
