@@ -8,5 +8,6 @@ With uniboard we learnt from the mistakes of moodle and developed an interface t
 To learn more or try it search: <http://uniboard.app>
 
 ## Progress 
-Slightly tainted progress of the Uniboard mobile application built in flutter. 
+Slightly tainted progress of the Uniboard mobile application built in Flutter. 
+
 Note: Both Sameer and I are very tight on time so if you'd like to contribute, please feel free to fork and build off what we've currently got.
