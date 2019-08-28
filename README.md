@@ -1,16 +1,10 @@
 # uniboard_app
 
-A new Flutter project.
+## About 
+Uniboard is the most intuitive, beautiful and easy way to use moodle. We saw the problems of the current university moodle systems, namely; the inefficient format which takes students much longer to navigate to content from than required, a lack of features such as searching and a download all capability and an overall unfriendly interface. 
 
-## Getting Started
+With uniboard we learnt from the mistakes of moodle and developed an interface that does right what the current moodle doesn't. To learn more or try it search: [Uniboard.app]
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+## Progress 
+Slightly tainted progress of the Uniboard mobile application built in flutter. 
+Note: Both Sameer and I are very tight on time so if you'd like to contribute, please feel free to fork and build off what we've currently got.
