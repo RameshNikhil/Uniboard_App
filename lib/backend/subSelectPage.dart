@@ -26,7 +26,7 @@ class SubSelectPage extends StatelessWidget {
         '&info=core_calendar_get_action_events_by_timesort';
     http
         .post(url,
-            headers: {"cookie": resultSplit[1]},
+            headers: {"cookie": 'MoodleSession='+resultSplit[1]+';'},
             body:
                 "[{\"index\":0,\"methodname\":\"core_calendar_get_action_events_by_timesort\",\"args\":{\"limitnum\":5,\"timesortfrom\":1558603389,\"timesortto\":1575019389}}]")
         .then((response) {
@@ -42,7 +42,7 @@ class SubSelectPage extends StatelessWidget {
     var url = 'https://lms.monash.edu/lib/ajax/getnavbranch.php';
     http
         .post(url,
-            headers: {"cookie": resultSplit[1]},
+            headers: {"cookie": 'MoodleSession='+resultSplit[1]+';'},
             body: "'[{elementid=expandable_branch_20_" +
                 subjectID +
                 "&id=" +

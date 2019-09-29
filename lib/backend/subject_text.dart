@@ -220,7 +220,7 @@ Future<dynamic> getUnitData(result) async {
       resultSplit[0] +
       '&info=theme_monash_get_enrolled_courses_by_timeline_classification';
   http.Response response = await http.post(url,
-      headers: {"cookie": resultSplit[1]},
+      headers: {"cookie": 'MoodleSession='+resultSplit[1]+';'},
       body:
           "[{\"index\":0,\"methodname\":\"theme_monash_get_enrolled_courses_by_timeline_classification\",\"args\":{\"classification\":\"courses\",\"limit\":999,\"offset\":0,\"sort\":\"en.timecreated desc\",\"search\":null}}]");
   List data = json.decode(response.body);
