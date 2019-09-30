@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:uniboard_app/backend/RunJSInWebView.dart';
+import 'package:uniboard_app/components/cupertinoSingleAlert.dart';
 import '../routing/fade_transition.dart';
 import 'package:flutter/cupertino.dart';
+import '../components/cupertinoSingleAlert.dart';
 
 class IntroPage extends StatelessWidget {
   @override
@@ -15,7 +17,6 @@ class IntroPage extends StatelessWidget {
     TextEditingController nameController = new TextEditingController();
     TextEditingController emailController = new TextEditingController();
     TextEditingController passwordController = new TextEditingController();
-
 
     return PageView(
       controller: _controller,
@@ -106,7 +107,6 @@ class IntroPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-
                   ShowUp(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -121,19 +121,18 @@ class IntroPage extends StatelessWidget {
                     ),
                     delay: delayAmount * 3,
                   ),
-
                   ShowUp(
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 0.0),
                       child: TextField(
                         decoration: InputDecoration(
-                            border: InputBorder.none, 
-                            hintText: 'Name',
-                            ),
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontFamily: "Quicksand",
-                          ),
+                          border: InputBorder.none,
+                          hintText: 'Name',
+                        ),
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontFamily: "Quicksand",
+                        ),
                         controller: nameController,
                       ),
                     ),
@@ -144,11 +143,12 @@ class IntroPage extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
                       child: TextField(
                         decoration: InputDecoration(
-                            border: InputBorder.none, hintText: 'Monash Email Address'),
-                             style: TextStyle(
-                            fontSize: 20.0,
-                            fontFamily: "Quicksand",
-                          ),
+                            border: InputBorder.none,
+                            hintText: 'Monash Email Address'),
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontFamily: "Quicksand",
+                        ),
                         controller: emailController,
                       ),
                     ),
@@ -159,17 +159,17 @@ class IntroPage extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
                       child: TextField(
                         decoration: InputDecoration(
-                            border: InputBorder.none, hintText: 'Monash Password'),
-                             style: TextStyle(
-                            fontSize: 20.0, 
-                            fontFamily: "Quicksand",
-                          ),
+                            border: InputBorder.none,
+                            hintText: 'Monash Password'),
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontFamily: "Quicksand",
+                        ),
                         controller: passwordController,
                       ),
                     ),
                     delay: delayAmount * 8,
                   ),
-
                   ShowUp(
                     child: Padding(
                       padding: EdgeInsets.only(top: 64.0),
@@ -184,9 +184,6 @@ class IntroPage extends StatelessWidget {
                     ),
                     delay: delayAmount * 3,
                   ),
-
-
-
                 ],
               ),
             ),
@@ -194,13 +191,22 @@ class IntroPage extends StatelessWidget {
           backgroundColor: Colors.white,
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-
-              EmptyAlert();
-
-              // nameController.text.isEmpty ? 
-
-              // Navigator.pushReplacement(context, FadeRouteBuilder(page: RunJSInWebView()));
-
+              if (nameController.text.isEmpty) {
+                CupertinoSingleAlert(
+                    title: "Name missing",
+                    body: "Please add your name before continuing");
+              } else if (emailController.text.isEmpty) {
+                CupertinoSingleAlert(
+                    title: "Name missing",
+                    body: "Please add your name before continuing");
+              } else if (passwordController.text.isEmpty) {
+                CupertinoSingleAlert(
+                    title: "Name missing",
+                    body: "Please add your name before continuing");
+              } else {
+                Navigator.pushReplacement(
+                    context, FadeRouteBuilder(page: RunJSInWebView()));
+              }
             },
             child: ShowUp(
               child: Icon(Icons.keyboard_arrow_down),
@@ -272,28 +278,5 @@ class _ShowUpState extends State<ShowUp> with TickerProviderStateMixin {
       ),
       opacity: _animController,
     );
-  }
-}
-
-class EmptyAlert extends StatelessWidget {
-  const EmptyAlert({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-
-   void displayDialog() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) => new CupertinoAlertDialog(
-            title: new Text("Alert"),
-            content: new Text("My alert message"),
-            actions: [
-              CupertinoDialogAction(
-                  isDefaultAction: true, child: new Text("Close"))
-            ],
-          ),
-    );
-  }
-
   }
 }
