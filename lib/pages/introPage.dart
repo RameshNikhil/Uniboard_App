@@ -3,13 +3,40 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:uniboard_app/backend/RunJSInWebView.dart';
 import 'package:uniboard_app/components/cupertinoSingleAlert.dart';
+import 'package:uniboard_app/components/standardAlert.dart';
 import '../routing/fade_transition.dart';
 import 'package:flutter/cupertino.dart';
-import '../components/cupertinoSingleAlert.dart';
 
 class IntroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var alertTitle = "Alert Title";
+    var alertBody = "Alert Body";
+
+    AlertFunction() {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            // return object of type Dialog
+            return AlertDialog(
+              titlePadding: EdgeInsets.fromLTRB(28, 18, 0, 0),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
+              title: Text(alertTitle),
+              content: Text(alertBody),
+              actions: <Widget>[
+                // usually buttons at the bottom of the dialog
+                new FlatButton(
+                  child: new Text("Close"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          });
+    }
+
     int delayAmount = 500;
 
     PageController _controller = PageController();
@@ -192,20 +219,24 @@ class IntroPage extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               if (nameController.text.isEmpty) {
-                CupertinoSingleAlert(
-                    title: "Name missing",
-                    body: "Please add your name before continuing");
+                alertTitle = "Name Missing";
+                alertBody = "Please add your name before continuing";
+                AlertFunction();
               } else if (emailController.text.isEmpty) {
-                CupertinoSingleAlert(
-                    title: "Name missing",
-                    body: "Please add your name before continuing");
+                //! need to check if email is valid with monash
+                alertTitle = "Email Missing";
+                alertBody = "Please add your email before continuing";
+                AlertFunction();
               } else if (passwordController.text.isEmpty) {
-                CupertinoSingleAlert(
-                    title: "Name missing",
-                    body: "Please add your name before continuing");
+                //! need to check if password is valid
+                alertTitle = "Password Missing";
+                alertBody = "Please add your Password before continuing";
+                AlertFunction();
               } else {
+                // TODO : this should pass in the users details and then they should be able to automatically logon
                 Navigator.pushReplacement(
                     context, FadeRouteBuilder(page: RunJSInWebView()));
+                //and then once Monash validates show them the subject select, otherwise go back to pswd
               }
             },
             child: ShowUp(
@@ -220,8 +251,6 @@ class IntroPage extends StatelessWidget {
             ),
           ),
         ),
-
-        //Page 3
       ],
     );
   }

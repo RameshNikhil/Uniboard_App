@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:uniboard_app/components/cards.dart';
-import 'package:uniboard_app/components/deleteDialog.dart';
 import 'package:uniboard_app/components/downloadCell.dart';
 import 'package:uniboard_app/pages/singleDownload.dart';
 import 'package:uniboard_app/pages/subjectsPage.dart';
 import '../routing/fade_transition.dart';
 import 'package:flutter/cupertino.dart';
+import '../components/standardAlert.dart';
 
 class DownloadsPage extends StatefulWidget {
   // var title;

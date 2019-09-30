@@ -91,30 +91,38 @@ class _SubjectTextState extends State<SubjectText> {
               //   padding: EdgeInsets.only(top: 20),
               //   child:  unitSelection(unitTitle: "Done",),
               // )
-             
             ],
           ),
         ),
         floatingActionButton: FloatingActionButton.extended(
-        label: Text(
-          "DONE", 
-        style: TextStyle(
-          fontSize: 15, 
-          fontWeight: FontWeight.bold, 
+          label: Text(
+            "DONE",
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          icon: Icon(Icons.check),
+          onPressed: () {
+            print("FAB pressed");
 
-        ),),
-        icon: Icon(Icons.check),
-        onPressed: () {
-          print("FAB pressed");
-          Navigator.pushReplacement(context, FadeRouteBuilder(page:  HomeScreen(newPageData: newPageData)));
+            if (newPageData == ""){
+              // TODO: alert to select at least 1 unit
+            } else {
 
-        },
-        foregroundColor: Colors.black,
-        backgroundColor: Colors.grey[100],
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(16.0))),
-      ),
+              // ! NOW PUSH THE NEWPAGEDATA TO A NEW CLASS TO SEND TO FIREBASE AND CALL FROM FIREBASE IN HOMESCREEN 
+              // Navigator.pushReplacement(context,FadeRouteBuilder(page: HomeScreen(newPageData: newPageData)));
+
+              Navigator.pushReplacement(context,FadeRouteBuilder(page: HomeScreen(newPageData: newPageData)));
+            }
+
+          },
+          foregroundColor: Colors.black,
+          backgroundColor: Colors.grey[100],
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(16.0))),
+        ),
       ),
     );
   }
@@ -140,23 +148,20 @@ class _unitSelectionState extends State<unitSelection> {
 
   Color solidColor = Color(0xffdddddd);
 
-
   void _cellChange() {
-    if (solidColor == Color(0xffdddddd)){ //grey: deselected
-       setState(() {
+    if (solidColor == Color(0xffdddddd)) {
+      //grey: deselected
+      setState(() {
         solidColor = Color(0xffaf7cf4); //purple: selected
         // selectedRepo
-    });
-    } else if (solidColor == Color(0xffaf7cf4)){  //purple: selected
+      });
+    } else if (solidColor == Color(0xffaf7cf4)) {
+      //purple: selected
       setState(() {
-        solidColor = Color(0xffdddddd);   //grey: deselct
-    });
+        solidColor = Color(0xffdddddd); //grey: deselct
+      });
     }
   }
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -203,15 +208,13 @@ class _unitSelectionState extends State<unitSelection> {
         ),
         onTap: () {
           //print("there was a tap");
-          
-           _cellChange();
+
+          _cellChange();
         },
       ),
     );
   }
 }
-
-
 
 Future<dynamic> getUnitData(result) async {
   var resultSplit = result.split("***");
@@ -220,7 +223,7 @@ Future<dynamic> getUnitData(result) async {
       resultSplit[0] +
       '&info=theme_monash_get_enrolled_courses_by_timeline_classification';
   http.Response response = await http.post(url,
-      headers: {"cookie": 'MoodleSession='+resultSplit[1]+';'},
+      headers: {"cookie": 'MoodleSession=' + resultSplit[1] + ';'},
       body:
           "[{\"index\":0,\"methodname\":\"theme_monash_get_enrolled_courses_by_timeline_classification\",\"args\":{\"classification\":\"courses\",\"limit\":999,\"offset\":0,\"sort\":\"en.timecreated desc\",\"search\":null}}]");
   List data = json.decode(response.body);

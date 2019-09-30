@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 class CupertinoSingleAlert extends StatefulWidget {
-  CupertinoSingleAlert({this.title, this.body}); 
+  CupertinoSingleAlert({@required this.title, @required this.body}); 
 
   var title; 
   var body; 
@@ -14,7 +14,6 @@ class _CupertinoSingleAlertState extends State<CupertinoSingleAlert> {
   @override
   Widget build(BuildContext context) {
 
-    void _showCupertinoDialog() {
     showDialog(
         context: context,
         builder: (context) {
@@ -31,8 +30,6 @@ class _CupertinoSingleAlertState extends State<CupertinoSingleAlert> {
             ],
           );
         });
-  }
-
 
   }
 }
