@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:flutter/material.dart';
 import 'package:uniboard_app/backend/RunJSInWebView.dart';
-import 'package:uniboard_app/components/cupertinoSingleAlert.dart';
-import 'package:uniboard_app/components/standardAlert.dart';
 import '../routing/fade_transition.dart';
 import 'package:flutter/cupertino.dart';
 

@@ -2,12 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:uniboard_app/pages/introPage.dart';
 import 'package:uniboard_app/routing/fade_transition.dart';
-//import 'package:uniboard_app/pages/test.dart';
-import 'package:uniboard_app/routing/scale_transition.dart';
-import './pages/homescreen.dart';
-//import './pages/test.dart';
 import 'package:flutter/services.dart';
-import 'backend/RunJSInWebView.dart';
 
 void main() {
   SystemChrome.setEnabledSystemUIOverlays([]);
@@ -50,10 +45,8 @@ class _SplashScreenState extends State<SplashScreen> {
   // }
 
   void navigationPage() {
-    Navigator.pushReplacement(
-        context,
-        FadeRouteBuilder(
-            page: IntroPage())); //method is in run_javascrip.dart
+    Navigator.pushReplacement(context,
+        FadeRouteBuilder(page: IntroPage())); //method is in run_javascrip.dart
   }
 
   @override

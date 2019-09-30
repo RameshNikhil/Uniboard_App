@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-
 import '../pages/functionsPage.dart';
 import '../pages/downloadsPage.dart';
 import '../pages/subjectsPage.dart';
@@ -83,8 +82,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _pages = <Widget>[
      DownloadsPage(),
-     SubjectsPage(unitNames),
+     SubjectsPage(unitNames), //! should call the unitNames from firebase data store and not pass it down the widget tree
      FunctionsPage(),
+
+     //! maybe try the widget tree pass down for now? Or just go straight to firebase?
 
     // new ConstrainedBox(
     //   constraints: const BoxConstraints.expand(),
