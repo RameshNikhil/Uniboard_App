@@ -4,6 +4,8 @@ import 'package:uniboard_app/backend/RunJSInWebView.dart';
 import '../routing/fade_transition.dart';
 import 'package:flutter/cupertino.dart';
 
+//! THIS PAGE IS PURELY FOR TESTING, IT WILL 'LIKELY' NOT BE USED IN PROD
+
 class IntroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

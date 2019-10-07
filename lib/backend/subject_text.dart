@@ -104,39 +104,48 @@ class _SubjectTextState extends State<SubjectText> {
           icon: Icon(Icons.check),
           onPressed: () {
             print("FAB pressed");
+            
 
-            if (newPageData == "") {
-              //? IDK if this will work - depends on the data type of newPageData
+            // if (newPageData == "") {
+            //   //? IDK if this will work - depends on the data type of newPageData
 
-              showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    // return object of type Dialog
-                    return AlertDialog(
-                      titlePadding: EdgeInsets.fromLTRB(28, 18, 0, 0),
-                      shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(20.0))),
-                      title: Text("Select at least 1 unit"),
-                      // content: Text(alertBody),
-                      actions: <Widget>[
-                        // usually buttons at the bottom of the dialog
-                        new FlatButton(
-                          child: new Text("Close"),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
-                    );
-                  });
-            } else {
-              // ! NOW PUSH THE NEWPAGEDATA TO A NEW CLASS TO SEND TO FIREBASE AND CALL FROM FIREBASE IN HOMESCREEN
-              // Navigator.pushReplacement(context,FadeRouteBuilder(page: HomeScreen(newPageData: newPageData)));
+            //   showDialog(
+            //       context: context,
+            //       builder: (BuildContext context) {
+            //         // return object of type Dialog
+            //         return AlertDialog(
+            //           titlePadding: EdgeInsets.fromLTRB(28, 18, 0, 0),
+            //           shape: RoundedRectangleBorder(
+            //               borderRadius:
+            //                   BorderRadius.all(Radius.circular(20.0))),
+            //           title: Text("Select at least 1 unit"),
+            //           // content: Text(alertBody),
+            //           actions: <Widget>[
+            //             // usually buttons at the bottom of the dialog
+            //             new FlatButton(
+            //               child: new Text("Close"),
+            //               onPressed: () {
+            //                 Navigator.of(context).pop();
+            //               },
+            //             ),
+            //           ],
+            //         );
+            //       });
+            // } else {
+            //   // ! NOW PUSH THE NEWPAGEDATA TO A NEW CLASS TO SEND TO FIREBASE AND CALL FROM FIREBASE IN HOMESCREEN
+            //   // Navigator.pushReplacement(context,FadeRouteBuilder(page: HomeScreen(newPageData: newPageData)));
 
-              Navigator.pushReplacement(context,
-                  FadeRouteBuilder(page: HomeScreen(newPageData: newPageData)));
-            }
+            //   Navigator.pushReplacement(context,
+            //       FadeRouteBuilder(page: HomeScreen(newPageData: newPageData)));
+            // }
+
+
+
+
+
+
+
+
           },
           foregroundColor: Colors.black,
           backgroundColor: Colors.grey[100],

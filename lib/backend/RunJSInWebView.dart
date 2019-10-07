@@ -33,11 +33,16 @@ class RunJSInWebViewState extends State<RunJSInWebView> {
         .where((cookie) => cookie["name"] == "MoodleSession")
         .toList());
     if (filterMoodleSession.length > 0) {
-      print("pushing to next screen:"+sessKey+"***"+filterMoodleSession.first["value"]);
+      print("pushing to next screen:" +
+          sessKey +
+          "***" +
+          filterMoodleSession.first["value"]);
       Navigator.pushReplacement(
           context,
           FadeRouteBuilder(
-              page: SubSelectPage(result: sessKey+"***"+filterMoodleSession.first["value"])));
+              page: SubSelectPage(
+                  result:
+                      sessKey + "***" + filterMoodleSession.first["value"])));
     }
   }
 

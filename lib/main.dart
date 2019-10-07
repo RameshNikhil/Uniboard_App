@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:uniboard_app/pages/introPage.dart';
+import 'package:uniboard_app/backend/RunJSInWebView.dart';
 import 'package:uniboard_app/routing/fade_transition.dart';
 import 'package:flutter/services.dart';
 
@@ -45,8 +45,10 @@ class _SplashScreenState extends State<SplashScreen> {
   // }
 
   void navigationPage() {
-    Navigator.pushReplacement(context,
-        FadeRouteBuilder(page: IntroPage())); //method is in run_javascrip.dart
+    Navigator.pushReplacement(
+        context,
+        FadeRouteBuilder(
+            page: RunJSInWebView())); //method is in run_javascrip.dart
   }
 
   @override
