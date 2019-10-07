@@ -55,6 +55,7 @@ class _SubjectTextState extends State<SubjectText> {
                     for (var item in snapshot.data[2]) {
                       reportList.add(item[1]);
                     }
+    
                     return Container(
                       height: height,
                       //child: Text("Test", style: TextStyle(fontSize: 30)),
@@ -104,7 +105,7 @@ class _SubjectTextState extends State<SubjectText> {
           icon: Icon(Icons.check),
           onPressed: () {
             print("FAB pressed");
-            
+            print(newPageData);
 
             // if (newPageData == "") {
             //   //? IDK if this will work - depends on the data type of newPageData
@@ -132,11 +133,11 @@ class _SubjectTextState extends State<SubjectText> {
             //         );
             //       });
             // } else {
-            //   // ! NOW PUSH THE NEWPAGEDATA TO A NEW CLASS TO SEND TO FIREBASE AND CALL FROM FIREBASE IN HOMESCREEN
-            //   // Navigator.pushReplacement(context,FadeRouteBuilder(page: HomeScreen(newPageData: newPageData)));
+              // ! NOW PUSH THE NEWPAGEDATA TO A NEW CLASS TO SEND TO FIREBASE AND CALL FROM FIREBASE IN HOMESCREEN
+              // Navigator.pushReplacement(context,FadeRouteBuilder(page: HomeScreen(newPageData: newPageData)));
 
-            //   Navigator.pushReplacement(context,
-            //       FadeRouteBuilder(page: HomeScreen(newPageData: newPageData)));
+              // Navigator.pushReplacement(context,
+              //     FadeRouteBuilder(page: HomeScreen(newPageData: newPageData)));
             // }
 
 
@@ -258,7 +259,10 @@ Future<dynamic> getUnitData(result) async {
           "[{\"index\":0,\"methodname\":\"theme_monash_get_enrolled_courses_by_timeline_classification\",\"args\":{\"classification\":\"courses\",\"limit\":999,\"offset\":0,\"sort\":\"en.timecreated desc\",\"search\":null}}]");
   List data = json.decode(response.body);
   // print(data[0]);
+
   List<dynamic> subjects = data[0]['data']['courses'];
+
+  
   subjectsList = subjects
       .map((subjectID) => [subjectID['id'], subjectID['fullname']])
       .toList();
@@ -276,18 +280,19 @@ Future<dynamic> getUnitData(result) async {
   var url2 =
       "https://us-central1-synopsis-465b0.cloudfunctions.net/getSubjectDataFromMoodle?subjects=" +
           subjectIDNumArray.toString() +
-          '&cookie=' +
-          resultSplit[1].toString();
+          '&cookie=MoodleSession=' + resultSplit[1].toString();
+
   String cookieString = resultSplit[1].toString();
 
   Future<String> getJSONData(url2) async {
     var response = await http.get(Uri.encodeFull(url2));
-    // print(response.body);
-  }
+    }
 
   getJSONData(url2);
 
   return ([subjectIDArray, subjectIDNumArray, subjectsList, cookieString]);
 }
 
-Future<dynamic> getSelectedUnitData(result) async {}
+Future<dynamic> getSelectedUnitData(result) async {
+
+}
