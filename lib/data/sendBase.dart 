@@ -1,6 +1,0 @@
-import 'package:flutter/material.dart'; 
-
-// This page will send all the details of a user to a firebase server which will then be queried on subsequent pages 
-// This prevents the need to cascase items down pages 
-
-// TODO: open connection to firebase and under this user send this information 
