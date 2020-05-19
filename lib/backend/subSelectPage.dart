@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:async';
-import 'package:http/http.dart' as http;
 import 'package:uniboard_app/pages/homescreen.dart';
 import 'package:uniboard_app/routing/fade_transition.dart';
 
@@ -62,7 +60,7 @@ class SubSelectPage extends StatelessWidget {
   }
 }
 
-// ! BELOW IS FROM WHAT USED TO BE SUBBJECT_TEXT
+// ! BELOW IS FROM WHAT USED TO BE SUBJECT_TEXT
 
 
 class SubjectText extends StatefulWidget {
@@ -76,8 +74,12 @@ class SubjectText extends StatefulWidget {
 }
 
 class _SubjectTextState extends State<SubjectText> {
-  List<dynamic> selectedReportList = List();
+
+  var selectedReportList = List<String>();
+  //List<dynamic> selectedReportList = List();
+
   dynamic newPageData = [];
+  var selectedList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -111,10 +113,12 @@ class _SubjectTextState extends State<SubjectText> {
                 future: getUnitData(widget.result),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    var reportList = <String>[];
+
+                    var reportList = [];
                     for (var item in snapshot.data[2]) {
                       reportList.add(item[1]);
                     }
+                  
                     return Container(
                       height: height,
                       //child: Text("Test", style: TextStyle(fontSize: 30)),
@@ -122,13 +126,16 @@ class _SubjectTextState extends State<SubjectText> {
                         children: <Widget>[
                           //put the container breakthrough here
 
-                          for (String i in reportList)
+                          for (var i in reportList)
                             unitSelection(
                               unitTitle: i,
+                              selectedList: selectedList,
                             )
+
                         ],
                       ),
                     );
+
                   } else if (snapshot.hasError) {
                     return new Text("${snapshot.error}");
                   } else {
@@ -196,15 +203,8 @@ class _SubjectTextState extends State<SubjectText> {
             //   // Navigator.pushReplacement(context,FadeRouteBuilder(page: HomeScreen(newPageData: newPageData)));
 
               Navigator.pushReplacement(context,
-                  FadeRouteBuilder(page: HomeScreen(newPageData: newPageData)));
+                  FadeRouteBuilder(page: HomeScreen(newPageData: selectedList)));
             // }
-
-
-
-
-
-
-
 
           },
           foregroundColor: Colors.black,
@@ -220,10 +220,8 @@ class _SubjectTextState extends State<SubjectText> {
 
 class unitSelection extends StatefulWidget {
   var unitTitle;
-  unitSelection({
-    Key key,
-    @required this.unitTitle,
-  }) : super(key: key);
+  var selectedList;
+  unitSelection({Key key, @required this.unitTitle, @required this.selectedList}) : super(key: key);
 
   _unitSelectionState createState() => _unitSelectionState();
 }
@@ -245,11 +243,17 @@ class _unitSelectionState extends State<unitSelection> {
         solidColor = Color(0xffaf7cf4); //purple: selected
         // selectedRepo
       });
+
+      widget.selectedList.add(widget.unitTitle); //push the title of the selected unit into the array 
+
     } else if (solidColor == Color(0xffaf7cf4)) {
       //purple: selected
       setState(() {
         solidColor = Color(0xffdddddd); //grey: deselct
       });
+
+      widget.selectedList.remove(widget.unitTitle);
+
     }
   }
 

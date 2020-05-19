@@ -15,6 +15,7 @@ class RunJSInWebViewState extends State<RunJSInWebView> {
   String url = "";
   double progress = 0;
 
+// ? Is this necessary?
   @override
   void initState() {
     super.initState();
